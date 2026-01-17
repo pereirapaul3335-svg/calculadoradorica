@@ -1,12 +1,13 @@
 import { useState } from "react";
-import { Calculator, Footprints, LayoutGrid, RectangleHorizontal } from "lucide-react";
+import { Calculator, Footprints, LayoutGrid, RectangleHorizontal, Layers } from "lucide-react";
 import DrawerCalculator from "@/components/DrawerCalculator";
 import ShoerackCalculator from "@/components/ShoerackCalculator";
 import RipadoCalculator from "@/components/RipadoCalculator";
 import BaseboardCalculator from "@/components/BaseboardCalculator";
+import ShelfCalculator from "@/components/ShelfCalculator";
 import dorivaLogo from "@/assets/doriva-logo.jpg";
 
-type CalculatorType = "gaveta" | "sapateira" | "ripado" | "rodape";
+type CalculatorType = "gaveta" | "sapateira" | "ripado" | "rodape" | "prateleira";
 
 const Index = () => {
   const [activeCalculator, setActiveCalculator] = useState<CalculatorType>("gaveta");
@@ -33,50 +34,61 @@ const Index = () => {
 
         {/* Calculator Selector */}
         <div className="bg-card/80 backdrop-blur-sm rounded-3xl p-2 shadow-2xl border border-border/50 mb-6 animate-scale-in">
-          <div className="grid grid-cols-4 gap-2">
+          <div className="grid grid-cols-5 gap-1 md:gap-2">
             <button
               onClick={() => setActiveCalculator("gaveta")}
-              className={`p-3 md:p-4 rounded-2xl transition-all duration-300 font-semibold flex flex-col items-center justify-center gap-1 ${
+              className={`p-2 md:p-4 rounded-2xl transition-all duration-300 font-semibold flex flex-col items-center justify-center gap-1 ${
                 activeCalculator === "gaveta"
                   ? "bg-gradient-to-r from-primary to-primary/80 text-primary-foreground shadow-lg scale-[1.02]"
                   : "bg-background/50 text-muted-foreground hover:bg-secondary/50 hover:scale-[1.01]"
               }`}
             >
-              <Calculator className="w-5 h-5" />
-              <span className="text-xs md:text-sm">Gavetas</span>
+              <Calculator className="w-4 h-4 md:w-5 md:h-5" />
+              <span className="text-[10px] md:text-sm">Gavetas</span>
             </button>
             <button
               onClick={() => setActiveCalculator("sapateira")}
-              className={`p-3 md:p-4 rounded-2xl transition-all duration-300 font-semibold flex flex-col items-center justify-center gap-1 ${
+              className={`p-2 md:p-4 rounded-2xl transition-all duration-300 font-semibold flex flex-col items-center justify-center gap-1 ${
                 activeCalculator === "sapateira"
                   ? "bg-gradient-to-r from-primary to-primary/80 text-primary-foreground shadow-lg scale-[1.02]"
                   : "bg-background/50 text-muted-foreground hover:bg-secondary/50 hover:scale-[1.01]"
               }`}
             >
-              <Footprints className="w-5 h-5" />
-              <span className="text-xs md:text-sm">Sapateiras</span>
+              <Footprints className="w-4 h-4 md:w-5 md:h-5" />
+              <span className="text-[10px] md:text-sm">Sapateiras</span>
             </button>
             <button
               onClick={() => setActiveCalculator("ripado")}
-              className={`p-3 md:p-4 rounded-2xl transition-all duration-300 font-semibold flex flex-col items-center justify-center gap-1 ${
+              className={`p-2 md:p-4 rounded-2xl transition-all duration-300 font-semibold flex flex-col items-center justify-center gap-1 ${
                 activeCalculator === "ripado"
                   ? "bg-gradient-to-r from-primary to-primary/80 text-primary-foreground shadow-lg scale-[1.02]"
                   : "bg-background/50 text-muted-foreground hover:bg-secondary/50 hover:scale-[1.01]"
               }`}
             >
-              <LayoutGrid className="w-5 h-5" />
-              <span className="text-xs md:text-sm">Ripados</span>
+              <LayoutGrid className="w-4 h-4 md:w-5 md:h-5" />
+              <span className="text-[10px] md:text-sm">Ripados</span>
             </button>
             <button
               onClick={() => setActiveCalculator("rodape")}
-              className={`p-3 md:p-4 rounded-2xl transition-all duration-300 font-semibold flex flex-col items-center justify-center gap-1 ${
+              className={`p-2 md:p-4 rounded-2xl transition-all duration-300 font-semibold flex flex-col items-center justify-center gap-1 ${
                 activeCalculator === "rodape"
                   ? "bg-gradient-to-r from-primary to-primary/80 text-primary-foreground shadow-lg scale-[1.02]"
                   : "bg-background/50 text-muted-foreground hover:bg-secondary/50 hover:scale-[1.01]"
               }`}
             >
-              <RectangleHorizontal className="w-5 h-5" />
-              <span className="text-xs md:text-sm">Rodapé</span>
+              <RectangleHorizontal className="w-4 h-4 md:w-5 md:h-5" />
+              <span className="text-[10px] md:text-sm">Rodapé</span>
+            </button>
+            <button
+              onClick={() => setActiveCalculator("prateleira")}
+              className={`p-2 md:p-4 rounded-2xl transition-all duration-300 font-semibold flex flex-col items-center justify-center gap-1 ${
+                activeCalculator === "prateleira"
+                  ? "bg-gradient-to-r from-primary to-primary/80 text-primary-foreground shadow-lg scale-[1.02]"
+                  : "bg-background/50 text-muted-foreground hover:bg-secondary/50 hover:scale-[1.01]"
+              }`}
+            >
+              <Layers className="w-4 h-4 md:w-5 md:h-5" />
+              <span className="text-[10px] md:text-sm">Prateleiras</span>
             </button>
           </div>
         </div>
@@ -86,6 +98,7 @@ const Index = () => {
         {activeCalculator === "sapateira" && <ShoerackCalculator />}
         {activeCalculator === "ripado" && <RipadoCalculator />}
         {activeCalculator === "rodape" && <BaseboardCalculator />}
+        {activeCalculator === "prateleira" && <ShelfCalculator />}
 
         {/* Footer */}
         <footer className="text-center mt-10 text-sm text-muted-foreground/70">
