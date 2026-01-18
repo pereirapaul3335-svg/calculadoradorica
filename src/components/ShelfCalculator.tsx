@@ -2,9 +2,7 @@ import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
-
 const ShelfCalculator = () => {
   const [depth, setDepth] = useState<string>("");
   const [width, setWidth] = useState<string>("");
@@ -140,16 +138,22 @@ const ShelfCalculator = () => {
             <Label className="text-wood-dark font-medium">
               Espessura do MDF
             </Label>
-            <Select value={mdfThickness} onValueChange={setMdfThickness}>
-              <SelectTrigger className="input-wood">
-                <SelectValue placeholder="Selecione a espessura" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="15">15 mm</SelectItem>
-                <SelectItem value="18">18 mm</SelectItem>
-                <SelectItem value="25">25 mm</SelectItem>
-              </SelectContent>
-            </Select>
+            <div className="grid grid-cols-3 gap-2">
+              {["15", "18", "25"].map((value) => (
+                <button
+                  key={value}
+                  type="button"
+                  onClick={() => setMdfThickness(value)}
+                  className={`p-3 rounded-xl font-semibold transition-all duration-200 ${
+                    mdfThickness === value
+                      ? "bg-primary text-primary-foreground shadow-lg"
+                      : "bg-secondary/50 text-foreground hover:bg-secondary"
+                  }`}
+                >
+                  {value} mm
+                </button>
+              ))}
+            </div>
           </div>
 
           <div className="flex items-center justify-between p-4 bg-wood-cream/50 rounded-lg border border-wood-medium/20">
