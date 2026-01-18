@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { Calculator, Footprints, LayoutGrid, RectangleHorizontal, Layers } from "lucide-react";
 import DrawerCalculator from "@/components/DrawerCalculator";
 import ShoerackCalculator from "@/components/ShoerackCalculator";
@@ -11,6 +11,30 @@ type CalculatorType = "gaveta" | "sapateira" | "ripado" | "rodape" | "prateleira
 
 const Index = () => {
   const [activeCalculator, setActiveCalculator] = useState<CalculatorType>("gaveta");
+
+  const switchCalculator = useCallback(
+    (next: CalculatorType) => {
+      // Mitigação mobile: fecha qualquer overlay/portal aberto (Radix) antes de desmontar componentes
+      try {
+        (document.activeElement as HTMLElement | null)?.blur?.();
+        document.dispatchEvent(
+          new KeyboardEvent("keydown", {
+            key: "Escape",
+            code: "Escape",
+            keyCode: 27,
+            which: 27,
+            bubbles: true,
+            cancelable: true,
+          })
+        );
+      } catch {
+        // ignore
+      }
+
+      setActiveCalculator(next);
+    },
+    [setActiveCalculator]
+  );
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-secondary/20">
@@ -33,7 +57,7 @@ const Index = () => {
         <div className="bg-card/80 backdrop-blur-sm rounded-3xl p-2 shadow-2xl border border-border/50 mb-6 animate-scale-in">
           <div className="grid grid-cols-5 gap-1 md:gap-2">
             <button
-              onClick={() => setActiveCalculator("gaveta")}
+              onClick={() => switchCalculator("gaveta")}
               className={`p-2 md:p-4 rounded-2xl transition-all duration-300 font-semibold flex flex-col items-center justify-center gap-1 ${
                 activeCalculator === "gaveta"
                   ? "bg-gradient-to-r from-primary to-primary/80 text-primary-foreground shadow-lg scale-[1.02]"
@@ -44,7 +68,7 @@ const Index = () => {
               <span className="text-[10px] md:text-sm">Gavetas</span>
             </button>
             <button
-              onClick={() => setActiveCalculator("sapateira")}
+              onClick={() => switchCalculator("sapateira")}
               className={`p-2 md:p-4 rounded-2xl transition-all duration-300 font-semibold flex flex-col items-center justify-center gap-1 ${
                 activeCalculator === "sapateira"
                   ? "bg-gradient-to-r from-primary to-primary/80 text-primary-foreground shadow-lg scale-[1.02]"
@@ -55,7 +79,7 @@ const Index = () => {
               <span className="text-[10px] md:text-sm">Sapateiras</span>
             </button>
             <button
-              onClick={() => setActiveCalculator("ripado")}
+              onClick={() => switchCalculator("ripado")}
               className={`p-2 md:p-4 rounded-2xl transition-all duration-300 font-semibold flex flex-col items-center justify-center gap-1 ${
                 activeCalculator === "ripado"
                   ? "bg-gradient-to-r from-primary to-primary/80 text-primary-foreground shadow-lg scale-[1.02]"
@@ -66,7 +90,7 @@ const Index = () => {
               <span className="text-[10px] md:text-sm">Ripados</span>
             </button>
             <button
-              onClick={() => setActiveCalculator("rodape")}
+              onClick={() => switchCalculator("rodape")}
               className={`p-2 md:p-4 rounded-2xl transition-all duration-300 font-semibold flex flex-col items-center justify-center gap-1 ${
                 activeCalculator === "rodape"
                   ? "bg-gradient-to-r from-primary to-primary/80 text-primary-foreground shadow-lg scale-[1.02]"
@@ -77,7 +101,7 @@ const Index = () => {
               <span className="text-[10px] md:text-sm">Rodapé</span>
             </button>
             <button
-              onClick={() => setActiveCalculator("prateleira")}
+              onClick={() => switchCalculator("prateleira")}
               className={`p-2 md:p-4 rounded-2xl transition-all duration-300 font-semibold flex flex-col items-center justify-center gap-1 ${
                 activeCalculator === "prateleira"
                   ? "bg-gradient-to-r from-primary to-primary/80 text-primary-foreground shadow-lg scale-[1.02]"
