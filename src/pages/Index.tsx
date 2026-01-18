@@ -5,7 +5,7 @@ import ShoerackCalculator from "@/components/ShoerackCalculator";
 import RipadoCalculator from "@/components/RipadoCalculator";
 import BaseboardCalculator from "@/components/BaseboardCalculator";
 import ShelfCalculator from "@/components/ShelfCalculator";
-import dorivaLogo from "@/assets/doriva-logo.jpg";
+import dorivaLogo from "@/assets/doriva-logo.png";
 
 type CalculatorType = "gaveta" | "sapateira" | "ripado" | "rodape" | "prateleira";
 
@@ -17,19 +17,16 @@ const Index = () => {
       <div className="container mx-auto px-4 py-6 max-w-2xl">
         {/* Header */}
         <header className="text-center mb-8 animate-fade-in">
-          <div className="mb-6">
+          <div className="mb-4">
             <img 
               src={dorivaLogo} 
               alt="Doriva Móveis Sob Medida" 
-              className="w-48 h-48 mx-auto object-contain"
+              className="w-64 md:w-80 mx-auto object-contain drop-shadow-lg hover:scale-105 transition-transform duration-300"
             />
           </div>
-          <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-2 tracking-tight">
+          <h1 className="text-xl md:text-2xl font-bold text-foreground mb-1 tracking-tight">
             Calculadora Marcenaria
           </h1>
-          <p className="text-primary font-medium text-lg">
-            Doriva Móveis Sob Medida
-          </p>
         </header>
 
         {/* Calculator Selector */}
