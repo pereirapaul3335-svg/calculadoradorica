@@ -210,6 +210,38 @@ const ShelfCalculator = () => {
                 <span className="text-wood-dark font-bold">Medida do Pitão:</span>
                 <span className="text-wood-accent font-bold text-xl">{results.pitonMeasure} cm</span>
               </div>
+
+              {/* Visual Representation */}
+              <div className="mt-4 p-4 bg-wood-cream/50 rounded-lg border border-wood-medium/20">
+                <p className="text-sm font-medium text-wood-dark mb-3">Distribuição Visual:</p>
+                <div className="flex flex-col gap-1 overflow-x-auto pb-2">
+                  {/* Vão inicial */}
+                  <div className="h-8 bg-wood-accent/30 rounded-sm flex items-center justify-center border-2 border-dashed border-wood-accent/50">
+                    <span className="text-[10px] text-wood-dark font-medium">Vão ({results.gapHeight} cm)</span>
+                  </div>
+                  {/* Prateleiras intercaladas com vãos */}
+                  {Array.from({ length: parseInt(shelfCount) || 0 }).map((_, index) => (
+                    <div key={index} className="flex flex-col gap-1">
+                      {/* Prateleira */}
+                      <div 
+                        className="bg-wood-medium rounded-sm flex items-center justify-center"
+                        style={{ height: `${Math.max(16, parseFloat(results.effectiveThickness) * 8)}px` }}
+                      >
+                        <span className="text-xs text-white font-medium">
+                          Prateleira {index + 1} ({results.effectiveThickness}cm)
+                        </span>
+                      </div>
+                      {/* Vão após cada prateleira */}
+                      <div className="h-8 bg-wood-accent/30 rounded-sm flex items-center justify-center border-2 border-dashed border-wood-accent/50">
+                        <span className="text-[10px] text-wood-dark font-medium">Vão ({results.gapHeight} cm)</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-xs text-muted-foreground mt-2">
+                  {shelfCount} prateleira{parseInt(shelfCount) > 1 ? 's' : ''} + {results.gapCount} vãos de {results.gapHeight}cm
+                </p>
+              </div>
             </div>
           </CardContent>
         </Card>
