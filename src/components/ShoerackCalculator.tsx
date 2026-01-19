@@ -246,26 +246,20 @@ const ShoerackCalculator = () => {
 
             {/* Visual Representation */}
             <div className="bg-secondary/30 rounded-2xl p-4 border border-border/30">
-              <p className="text-sm font-medium text-muted-foreground mb-3">Distribuição Visual:</p>
+              <p className="text-sm font-medium text-foreground mb-3">Distribuição Visual:</p>
               <div className="flex flex-col gap-1 overflow-x-auto pb-2">
-                {/* Começa com vão */}
-                <div className="flex items-center gap-1">
-                  <div className="h-8 bg-accent/30 rounded-sm flex items-center justify-center flex-1 border-2 border-dashed border-accent/50">
-                    <span className="text-[10px] text-accent font-medium">Vão</span>
-                  </div>
-                </div>
-                {/* Sapateiras intercaladas com vãos */}
+                {/* Sapateiras intercaladas com vãos - começa com sapateira, termina com vão */}
                 {Array.from({ length: quantidadeSapateiras }).map((_, index) => (
                   <div key={index} className="flex flex-col gap-1">
                     {/* Sapateira */}
-                    <div className="h-10 bg-primary/80 rounded-sm flex items-center justify-center">
+                    <div className="h-10 bg-primary rounded-sm flex items-center justify-center">
                       <span className="text-xs text-primary-foreground font-medium">
                         Sapateira {index + 1} ({measurements.side.height.toFixed(1)}cm)
                       </span>
                     </div>
                     {/* Vão após cada sapateira */}
-                    <div className="h-8 bg-accent/30 rounded-sm flex items-center justify-center border-2 border-dashed border-accent/50">
-                      <span className="text-[10px] text-accent font-medium">Vão</span>
+                    <div className="h-8 bg-accent/40 rounded-sm flex items-center justify-center border-2 border-dashed border-accent">
+                      <span className="text-[10px] text-foreground font-medium">Vão</span>
                     </div>
                   </div>
                 ))}
