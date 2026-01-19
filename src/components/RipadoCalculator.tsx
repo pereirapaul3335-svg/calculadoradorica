@@ -1,5 +1,6 @@
 import { useState, useMemo } from "react";
 import { Ruler, LayoutGrid, ArrowRight, Package, Link2 } from "lucide-react";
+import DownloadButton from "./DownloadButton";
 
 interface RipadoMeasurements {
   espacoRipados: number;
@@ -268,6 +269,27 @@ const RipadoCalculator = () => {
                 )}
               </p>
             </div>
+
+            <DownloadButton
+              filename="ripado-resultado"
+              content={`CALCULADORA DE RIPADO - RESULTADOS
+========================================
+Data: ${new Date().toLocaleDateString('pt-BR')}
+
+MEDIDAS INFORMADAS:
+- Tamanho Total da Peça: ${tamanhoTotal} cm
+- Quantidade de Ripados: ${quantidadeRipados}
+- Largura de Cada Ripado: ${larguraRipado} cm
+- Emenda Ativada: ${emendaAtivada ? 'Sim' : 'Não'}
+
+RESULTADOS:
+- Largura de Cada Vão: ${measurements.larguraVao.toFixed(2)} cm
+- Quantidade de Vãos: ${measurements.quantidadeVaos}
+- Espaço ocupado pelos Ripados: ${measurements.espacoRipados.toFixed(1)} cm
+- Espaço para os Vãos: ${measurements.espacoVaos.toFixed(1)} cm
+${emendaAtivada ? `- Última ripa: ${(parseFloat(larguraRipado) / 2).toFixed(1)}cm dentro, ${(parseFloat(larguraRipado) / 2).toFixed(1)}cm fora` : ''}
+`}
+            />
           </div>
         </div>
       )}

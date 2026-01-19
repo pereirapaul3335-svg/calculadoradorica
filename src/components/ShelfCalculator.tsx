@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
+import DownloadButton from "./DownloadButton";
 const ShelfCalculator = () => {
   const [depth, setDepth] = useState<string>("");
   const [width, setWidth] = useState<string>("");
@@ -242,6 +243,32 @@ const ShelfCalculator = () => {
                   {shelfCount} prateleira{parseInt(shelfCount) > 1 ? 's' : ''} + {results.gapCount} vãos de {results.gapHeight}cm
                 </p>
               </div>
+
+              <DownloadButton
+                filename="prateleira-resultado"
+                content={`CALCULADORA DE PRATELEIRA - RESULTADOS
+========================================
+Data: ${new Date().toLocaleDateString('pt-BR')}
+
+MEDIDAS INFORMADAS:
+- Profundidade: ${depth} cm
+- Largura: ${width} cm
+- Altura do Vão: ${openingHeight} cm
+- Espessura MDF: ${mdfThickness} mm
+- Quantidade de Prateleiras: ${shelfCount}
+- Prateleira Engrossada: ${isThickened ? 'Sim' : 'Não'}
+
+RESULTADOS:
+- Profundidade Final: ${results.finalDepth} cm
+- Largura Final: ${results.finalWidth} cm
+- Espessura por Prateleira: ${results.effectiveThickness} cm
+- Soma das Espessuras: ${results.totalShelfThickness} cm
+- Altura Disponível (vãos): ${results.availableHeight} cm
+- Quantidade de Vãos: ${results.gapCount}
+- Altura de Cada Vão: ${results.gapHeight} cm
+- Medida do Pitão: ${results.pitonMeasure} cm
+`}
+              />
             </div>
           </CardContent>
         </Card>

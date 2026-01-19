@@ -9,6 +9,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import DownloadButton from "./DownloadButton";
 
 type MaterialType = "mdf" | "madeira";
 
@@ -150,6 +151,24 @@ const BaseboardCalculator = () => {
                 </div>
               )}
             </div>
+
+            <DownloadButton
+              filename="rodape-resultado"
+              content={`CALCULADORA DE RODAPÉ - RESULTADOS
+========================================
+Data: ${new Date().toLocaleDateString('pt-BR')}
+
+MEDIDAS INFORMADAS:
+- Material: ${material === 'mdf' ? 'MDF' : 'Madeira'}
+- Profundidade do Móvel: ${depth} cm
+- Comprimento do Móvel: ${length} cm
+${material === 'madeira' ? `- Rodapé de Parede: ${wallBaseboard ? 'Sim' : 'Não'}` : ''}
+
+RESULTADOS:
+${resultDepth !== null ? `- Profundidade do Rodapé: ${resultDepth.toFixed(1)} cm` : ''}
+${resultLength !== null ? `- Comprimento do Rodapé: ${resultLength.toFixed(1)} cm` : ''}
+`}
+            />
           </div>
         )}
       </div>
