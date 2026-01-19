@@ -1,5 +1,6 @@
 import { useState, useMemo } from "react";
 import { Ruler, Square, ArrowRight, Layers, Package } from "lucide-react";
+import DownloadButton from "./DownloadButton";
 
 type SlideType = "oculta" | "telescopica";
 
@@ -275,6 +276,32 @@ const ShoerackCalculator = () => {
                 <strong className="text-foreground">Resumo:</strong> {quantidadeSapateiras} sapateira{quantidadeSapateiras > 1 ? 's' : ''} com corrediça {slideType} de {tamanhoCorre}cm
               </p>
             </div>
+
+            <DownloadButton
+              filename="sapateira-resultado"
+              content={`CALCULADORA DE SAPATEIRA - RESULTADOS
+========================================
+Data: ${new Date().toLocaleDateString('pt-BR')}
+
+MEDIDAS INFORMADAS:
+- Largura do Vão: ${vaoLargura} cm
+- Altura do Vão: ${vaoAltura} cm
+- Profundidade: ${profundidade} cm
+- Quantidade de Sapateiras: ${quantidadeSapateiras}
+- Altura da Lateral: ${alturaLateralFixa} cm
+- Tamanho Corrediça: ${tamanhoCorre} cm
+- Tipo Corrediça: ${slideType}
+
+MEDIDAS DE CORTE:
+Frente e Traseira (${measurements.frontBack.quantity} peças):
+- Largura: ${measurements.frontBack.width.toFixed(1)} cm
+- Altura: ${measurements.frontBack.height.toFixed(1)} cm
+
+Laterais (${measurements.side.quantity} peças):
+- Profundidade: ${measurements.side.width.toFixed(1)} cm
+- Altura: ${measurements.side.height.toFixed(1)} cm
+`}
+            />
           </div>
         </div>
       )}
