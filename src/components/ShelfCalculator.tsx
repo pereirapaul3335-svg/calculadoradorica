@@ -216,15 +216,15 @@ const ShelfCalculator = () => {
                 <p className="text-sm font-medium text-wood-dark mb-3">Distribuição Visual:</p>
                 <div className="flex flex-col gap-1 overflow-x-auto pb-2">
                   {/* Vão inicial */}
-                  <div className="h-8 bg-wood-accent/30 rounded-sm flex items-center justify-center border-2 border-dashed border-wood-accent/50">
-                    <span className="text-[10px] text-wood-dark font-medium">Vão ({results.gapHeight} cm)</span>
+                  <div className="h-8 bg-amber-200 rounded-sm flex items-center justify-center border-2 border-dashed border-amber-400">
+                    <span className="text-[10px] text-amber-800 font-medium">Vão ({results.gapHeight} cm)</span>
                   </div>
                   {/* Prateleiras intercaladas com vãos */}
                   {Array.from({ length: parseInt(shelfCount) || 0 }).map((_, index) => (
                     <div key={index} className="flex flex-col gap-1">
                       {/* Prateleira */}
                       <div 
-                        className="bg-wood-medium rounded-sm flex items-center justify-center"
+                        className="bg-amber-700 rounded-sm flex items-center justify-center"
                         style={{ height: `${Math.max(16, parseFloat(results.effectiveThickness) * 8)}px` }}
                       >
                         <span className="text-xs text-white font-medium">
@@ -232,8 +232,8 @@ const ShelfCalculator = () => {
                         </span>
                       </div>
                       {/* Vão após cada prateleira */}
-                      <div className="h-8 bg-wood-accent/30 rounded-sm flex items-center justify-center border-2 border-dashed border-wood-accent/50">
-                        <span className="text-[10px] text-wood-dark font-medium">Vão ({results.gapHeight} cm)</span>
+                      <div className="h-8 bg-amber-200 rounded-sm flex items-center justify-center border-2 border-dashed border-amber-400">
+                        <span className="text-[10px] text-amber-800 font-medium">Vão ({results.gapHeight} cm)</span>
                       </div>
                     </div>
                   ))}
