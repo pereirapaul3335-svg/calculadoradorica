@@ -295,6 +295,37 @@ const DrawerCalculator = () => {
               </p>
             </div>
 
+            {/* Visual Representation */}
+            <div className="bg-secondary/30 rounded-2xl p-4 border border-border/30">
+              <p className="text-sm font-medium text-muted-foreground mb-3">Distribuição Visual:</p>
+              <div className="flex flex-col gap-1 overflow-x-auto pb-2">
+                {/* Começa com vão */}
+                <div className="flex items-center gap-1">
+                  <div className="h-8 bg-accent/30 rounded-sm flex items-center justify-center flex-1 border-2 border-dashed border-accent/50">
+                    <span className="text-[10px] text-accent font-medium">Vão (3cm)</span>
+                  </div>
+                </div>
+                {/* Gavetas intercaladas com vãos */}
+                {Array.from({ length: quantidadeGavetas }).map((_, index) => (
+                  <div key={index} className="flex flex-col gap-1">
+                    {/* Gaveta */}
+                    <div className="h-10 bg-primary/80 rounded-sm flex items-center justify-center">
+                      <span className="text-xs text-primary-foreground font-medium">
+                        Gaveta {index + 1} ({measurements.side.height.toFixed(1)}cm)
+                      </span>
+                    </div>
+                    {/* Vão após cada gaveta */}
+                    <div className="h-8 bg-accent/30 rounded-sm flex items-center justify-center border-2 border-dashed border-accent/50">
+                      <span className="text-[10px] text-accent font-medium">Vão (3cm)</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <p className="text-xs text-muted-foreground mt-2">
+                {quantidadeGavetas} gaveta{quantidadeGavetas > 1 ? 's' : ''} + {quantidadeGavetas + 1} vãos de 3cm = {(quantidadeGavetas + 1) * 3}cm de espaçamento
+              </p>
+            </div>
+
             {/* Summary */}
             <div className="bg-secondary/50 rounded-2xl p-4 mt-4">
               <p className="text-sm text-muted-foreground">
